@@ -9,7 +9,7 @@
                 "-g",
                 "${workspaceFolder}/hello_world.cpp",
                 "-o",
-                "${workspaceFolder}/hello_world"
+                "${workspaceFolder}/out/hello_world"
             ],
             "options": {
                 "cwd": "${workspaceFolder}"
