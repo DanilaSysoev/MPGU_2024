@@ -4,6 +4,8 @@
 #include <limits>
 
 #include "console_ui.hpp"
+#include "inputService.hpp"
+#include "outputService.hpp"
 #include "pizzaRepository.hpp"
 #include "orderRepository.hpp"
 
@@ -20,7 +22,7 @@ int main()
     {
         printMainMenu();
 
-        int command = readIntFromCin();
+        int command = getInt();
 
         switch (command)
         {
@@ -52,7 +54,7 @@ int main()
             is_over = true;
             break;
         default:
-            cout << "Unknown command. Try again\n";
+            printMessage("Unknown command. Try again");
             break;
         }
     }

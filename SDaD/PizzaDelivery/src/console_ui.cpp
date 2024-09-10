@@ -1,20 +1,6 @@
 #include <limits>
 #include <iostream>
 
-
-int readIntFromCin()
-{
-    int command = 0;
-    std::cin >> command;
-    if (!std::cin)
-    {
-        command = 0;
-        std::cin.ignore(std::numeric_limits<int>::max(), '\n');
-        std::cin.clear();
-    }
-    return command;
-}
-
 void printMainMenu()
 {
     std::cout << "Select oeration:" << std::endl;

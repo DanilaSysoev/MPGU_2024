@@ -4,13 +4,12 @@
 #include "pizzaRepository.hpp"
 #include "console_ui.hpp"
 #include "outputService.hpp"
+#include "inputService.hpp"
 
 void addPizza(std::vector<Pizza>& pizzaList)
 {
     printMessage("Enter pizza name:");
-    std::string name;
-    std::getchar();
-    std::getline(std::cin, name);
+    std::string name = getLine();
     pizzaList.push_back({name});
 }
 
@@ -31,6 +30,6 @@ void removePizza(std::vector<Pizza>& pizzaList)
     printMessage("Select pizza:");
     printListOf(pizzaList);
 
-    int pizzaNumber = readIntFromCin();
+    int pizzaNumber = getInt();
     tryRemovePizza(pizzaList, pizzaNumber);
 }

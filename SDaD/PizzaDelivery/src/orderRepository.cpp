@@ -1,8 +1,10 @@
 #include <vector>
 #include <iostream>
 
+#include "inputService.hpp"
 #include "console_ui.hpp"
 #include "outputService.hpp"
+#include "entities.hpp"
 
 void addPizzaToOrder(const std::vector<Pizza>& pizzaList, Order& order)
 {
@@ -11,7 +13,7 @@ void addPizzaToOrder(const std::vector<Pizza>& pizzaList, Order& order)
         printMessage("Select pizza:");
         printListOf(pizzaList);
 
-        int pizzaNumber = readIntFromCin();
+        int pizzaNumber = getInt();
 
         if (pizzaNumber > 0 && pizzaNumber <= pizzaList.size()) {
             order.pizza.push_back(pizzaList[pizzaNumber - 1]);
@@ -27,10 +29,9 @@ Order createOrderInfo()
     Order order{};
     
     printMessage("Enter order date:");
-    std::getchar();
-    std::getline(std::cin, order.date);
+    order.date = getLine();
     printMessage("Enter order address:");
-    std::getline(std::cin, order.address);
+    order.address = getLine();
     printMessage("How many pizza?");
 
     return order;
@@ -39,7 +40,7 @@ Order createOrderInfo()
 void addOrder(const std::vector<Pizza>& pizzaList, std::vector<Order>& orders)
 {
     Order order = createOrderInfo();
-    int numberOfPizza = readIntFromCin();
+    int numberOfPizza = getInt();
     if (numberOfPizza > 0)
     {
         for (int i = 0; i < numberOfPizza; ++i)
@@ -83,7 +84,7 @@ void deliveryOrder(std::vector<Order>& orders)
     printMessage("Select order:");
     printNotDeliveredOrders(orders);
 
-    int orderNumber = readIntFromCin();
+    int orderNumber = getInt();
     if (orderNumber > 0 && orderNumber <= getNotDeliveredOrderNumber(orders))
         deliveryNotDeliveredOrderWithNumber(orders, orderNumber);
 }
@@ -109,7 +110,7 @@ void cancelOrder(std::vector<Order>& orders)
     printMessage("Select order:");
     printOrders(orders);
 
-    int orderNumber = readIntFromCin();
+    int orderNumber = getInt();
     tryApplyCancelation(orders, orderNumber);
 }
 
