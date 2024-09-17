@@ -1,6 +1,7 @@
 #include <iostream>
 #include <gtest/gtest.h>
 #include "square_equation_tests.hpp"
+#include "assert_demo.hpp"
 
 
 using namespace std;
