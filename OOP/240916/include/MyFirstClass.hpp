@@ -28,4 +28,29 @@ public: // class members are accessible everywhere outside the class
         std::cout << "called MyFirstClass() constructor" << std::endl;
     }
     MyFirstClass(int i, float f, const std::string& s);
+
+
+    // 3. Methods
+    // <type> <class_name>::<method_name>(<args_lis>)  <-- declaration
+    // <type> <full_class_name>::<method_name>(<args_lis>) { <body> }  <-- definition
+    void print() const
+    {
+        std::cout << "iField = " << iField << std::endl;
+        std::cout << "fField = " << fField << std::endl;
+        std::cout << "sField = " << sField << std::endl;
+    }
+
+    void printPublic() const;
+
+    int getIField() const;
+    float getFField() const       { return fField; }  // <-- inline
+    std::string getSField() const { return sField; }  // <-- inline
+
+    void setIField(int i)                { iField = i; }  // <-- inline
+    void setFField(float f)              { fField = f; }  // <-- inline
+    void setSField(const std::string& s) { sField = s; }  // <-- inline
+
+    void reset(int i = 0, float f = 0.0, const std::string& s = "");
 };
+
+int inline MyFirstClass::getIField() const { return iField; }

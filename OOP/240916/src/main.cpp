@@ -22,5 +22,13 @@ int main()
     mfcVar.psField = "Hello";
     cout << mfcVar.psField << endl;
 
+    mfcVar.print();
+    mfcVar.printPublic();
+
+    mfcVar.reset(10, 100.0, "New string");
+    mfcVar.reset(20, 100.0);
+    mfcVar.reset(30);
+    mfcVar.reset();
+
     return 0;
 }
