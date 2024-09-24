@@ -22,7 +22,7 @@ namespace ShopSystem
         
         void AddGoods(const Goods& goods);
         void RemoveGoods(uint32_t index);
-        uint32_t FindIndexById(int64_t id) const;
+        int32_t FindIndexById(int64_t id) const;
 
     private:
         std::string _name;

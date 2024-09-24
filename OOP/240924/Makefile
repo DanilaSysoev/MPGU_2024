@@ -28,5 +28,8 @@ $(RES): $(OUT)
 $(OUT_DIR)/%.o: $(SRC_DIR)/%.cpp $(INCLUDE_DIR)/%.hpp
 	$(CC) $(FLAGS) $< -o $@
 
-test:
-	echo $(INCLUDE)
+clean:
+	rm $(OUT_DIR)/*
+
+cleano:
+	rm $(OUT_DIR)/*.o

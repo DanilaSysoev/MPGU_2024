@@ -6,29 +6,41 @@
 
 
 void Crafting::ItemsCatalog::AddItem(const Item& item) {
-    auto it = GetByName(item.GetName());
-    if(it)
-        throw std::runtime_error("Item already exists");
-
     _items.push_back(item);
+}
+
+void Crafting::ItemsCatalog::RemoveItem(const std::string& name) {
+    auto index = GetIndexByName(name);
+    if(index < 0)
+        throw std::runtime_error("Item not found");
+    
+    _items.erase(_items.begin() + index);
 }
 
 const Crafting::Item&
 Crafting::ItemsCatalog::GetItem(const std::string& name) const {
-    auto item = GetByName(name);
-    if (item)
-        return *item;
+    auto index = GetIndexByName(name);
+    if (index >= 0)
+        return _items[index];
 
     throw std::runtime_error("Item not found");
 }
 
-std::optional<const Crafting::Item>
-Crafting::ItemsCatalog::GetByName(const std::string& name) const {
-    for(const auto& item : _items) {
-        if(item.GetName() == name)
-            return std::optional<const Crafting::Item>{ item };
+int32_t Crafting::ItemsCatalog::GetIndexByName(const std::string& name) const {
+    for (uint32_t i = 0; i < _items.size(); ++i) {
+        if(_items[i].GetName() == name)
+            return i;
     }
-    return std::nullopt;
+    return -1;
+}
+
+uint32_t Crafting::ItemsCatalog::GetItemsCount(const std::string& name) const {
+    uint32_t count = 0;
+    for (uint32_t i = 0; i < _items.size(); ++i) {
+        if(_items[i].GetName() == name)
+            ++count;
+    }
+    return count;
 }
 
 Crafting::ItemsCatalog& Crafting::ItemsCatalog::Get() {

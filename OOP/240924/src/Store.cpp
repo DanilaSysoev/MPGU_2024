@@ -17,7 +17,7 @@ void ShopSystem::Store::RemoveGoods(uint32_t index) {
     _goods.erase(_goods.begin() + index);
 }
 
-uint32_t ShopSystem::Store::FindIndexById(int64_t id) const {
+int32_t ShopSystem::Store::FindIndexById(int64_t id) const {
     for(uint32_t i = 0; i < _goods.size(); ++i) {
         if(_goods[i].GetId() == id)
             return i;
