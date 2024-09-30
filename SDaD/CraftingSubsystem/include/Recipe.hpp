@@ -23,6 +23,7 @@ namespace Crafting
 
         void ApplyTo(ItemsCatalog& catalog);
         bool CanBeApplied(const ItemsCatalog& catalog) const;
+        uint32_t GetIngredientsCount(const std::string& name) const;
 
     private:
         std::vector<Item> _ingredients;

@@ -20,14 +20,33 @@ void Crafting::Recipe::AddResult(const Item& result) {
 
 void Crafting::Recipe::ApplyTo(ItemsCatalog& catalog)
 {
-    for(const auto& ingredient: _ingredients) {
-        catalog.RemoveItem(ingredient.GetName());
-    }
-    for(const auto& result: _results) {
-        catalog.AddItem(result);
+    if(CanBeApplied(catalog)) {
+        for(const auto& ingredient: _ingredients) {
+            catalog.RemoveItem(ingredient.GetName());
+        }
+        for(const auto& result: _results) {
+            catalog.AddItem(result);
+        }
     }
 }
 
+uint32_t Crafting::Recipe::GetIngredientsCount(const std::string& name) const
+{
+    uint32_t count = 0;
+    for(const auto& ingredient: _ingredients) {
+        if(ingredient.GetName() == name) {
+            count++;
+        }
+    }
+    return count;
+}
+
 bool Crafting::Recipe::CanBeApplied(const ItemsCatalog& catalog) const {
-    
+    for(const auto& ingredient: _ingredients)
+    {
+        auto name = ingredient.GetName();
+        if(catalog.GetItemsCount(name) < GetIngredientsCount(name))
+            return false;
+    }
+    return true;
 }

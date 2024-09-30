@@ -182,3 +182,40 @@ TEST(RecipeTests, Apply_ApplyRecipeToUnderstuffedCatalog_CatalogListNotChanged) 
     ASSERT_EQ(catalog.GetItemsCount("Cherry"), 2);
     ASSERT_EQ(catalog.GetItemsCount("Flour"), 1);
 }
+
+TEST(RecipeTests, Apply_ApplyRecipeWithIngrWithRes_CatalogSizeChangedCorrectly) {
+    Crafting::ItemsCatalog::Clear();
+    Crafting::ItemsCatalog::Create();
+    auto catalog = Crafting::ItemsCatalog::Get();
+
+    catalog.AddItem(Crafting::Item::Create("Apple"));
+    catalog.AddItem(Crafting::Item::Create("Cherry"));
+    catalog.AddItem(Crafting::Item::Create("Cherry"));
+    catalog.AddItem(Crafting::Item::Create("Flour"));
+
+    Crafting::Recipe recipe;
+    recipe.AddIngredient(Crafting::Item::Create("Apple"));
+    recipe.AddIngredient(Crafting::Item::Create("Flour"));
+    recipe.AddResult(Crafting::Item::Create("Orange"));
+    recipe.ApplyTo(catalog);
+    ASSERT_EQ(catalog.GetSize(), 3);
+}
+
+TEST(RecipeTests, Apply_ApplyRecipeWithIngrWithRes_CatalogContentIsCorrect) {
+    Crafting::ItemsCatalog::Clear();
+    Crafting::ItemsCatalog::Create();
+    auto catalog = Crafting::ItemsCatalog::Get();
+
+    catalog.AddItem(Crafting::Item::Create("Apple"));
+    catalog.AddItem(Crafting::Item::Create("Cherry"));
+    catalog.AddItem(Crafting::Item::Create("Cherry"));
+    catalog.AddItem(Crafting::Item::Create("Flour"));
+
+    Crafting::Recipe recipe;
+    recipe.AddIngredient(Crafting::Item::Create("Apple"));
+    recipe.AddIngredient(Crafting::Item::Create("Flour"));
+    recipe.AddResult(Crafting::Item::Create("Orange"));
+    recipe.ApplyTo(catalog);
+    ASSERT_EQ(catalog.GetItemsCount("Cherry"), 2);
+    ASSERT_EQ(catalog.GetItemsCount("Orange"), 1);
+}
