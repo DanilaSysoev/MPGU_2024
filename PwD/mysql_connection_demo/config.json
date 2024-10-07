@@ -1,0 +1,7 @@
+{
+    "host": "localhost",
+    "user": "danila",
+    "password": "qwerty123",
+    "database": "PwDWorkspace",
+    "sql_dir": "sql"
+}
