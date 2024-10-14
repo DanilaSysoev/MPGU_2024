@@ -1,5 +1,5 @@
 import unittest
-from arithmetic import summ
+from arithmetic import summ, division
 
 
 test_case_number = 0
@@ -34,6 +34,11 @@ class TestArithmetic(unittest.TestCase):
     def test_summ_summn3and6_resultEqualsThree(self):
         print('test_summ_summn3and6_resultEqualsThree')
         self.assertEqual(summ(-3, 6), 3)
+    
+    def test_divisionByZero_raisesZeroDivisionError(self):
+        print('test_divisionByZero_raisesZeroDivisionError')
+        with self.assertRaises(ZeroDivisionError):
+            division(1, 0)
 
 
 if __name__ == '__main__':
