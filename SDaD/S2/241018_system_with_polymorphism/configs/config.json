@@ -1,0 +1,5 @@
+{
+    "sorter type": "selection",
+    "data source": "file",
+    "file name": "resources/data.txt"
+}
