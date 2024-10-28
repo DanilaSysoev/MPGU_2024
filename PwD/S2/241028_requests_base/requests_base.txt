@@ -1,0 +1,53 @@
+import requests
+import json
+import pandas as pd
+with open('config.json', 'r') as f:
+    config = json.load(f)
+r = requests.get('https://cat-fact.herokuapp.com/facts')
+r.status_code
+200
+data = json.loads(r.text)
+print(data[0])
+{'status': {'verified': True, 'sentCount': 1}, '_id': '58e00b5f0aac31001185ed24', 'user': '58e007480aac31001185ecef', 'text': 'When asked if her husband had any hobbies, Mary Todd Lincoln is said to have replied "cats."', '__v': 0, 'source': 'user', 'updatedAt': '2020-08-23T20:20:01.611Z', 'type': 'cat', 'createdAt': '2018-02-19T21:20:03.434Z', 'deleted': False, 'used': False}
+parameters = {
+    "name": 'Danila'
+}
+r = requests.get('https://api.agify.io', params=parameters)
+r.status_code
+200
+r.text
+'{"count":2653,"name":"Danila","age":52}'
+params = {
+    'q': 'bitcoin',
+    'apiKey': config['token']
+}
+
+r = requests.get('https://newsapi.org/v2/everything', params=params)
+r.text
+data = json.loads(r.text)
+data["articles"][0]
+{'source': {'id': 'wired', 'name': 'Wired'},
+ 'author': 'Joel Khalili',
+ 'title': 'Unmasking Bitcoin Creator Satoshi Nakamoto—Again',
+ 'description': 'A new HBO documentary takes a swing at uncovering the real identity of Satoshi Nakamoto, inventor of Bitcoin. But without incontrovertible proof, the myth lives on.',
+ 'url': 'https://www.wired.com/story/unmasking-bitcoin-creator-satoshi-nakamoto-again/',
+ 'urlToImage': 'https://media.wired.com/photos/6703eb3979f13fda7f04485b/191:100/w_1280,c_limit/Satoshi-Nakamoto-biz-1341874258.jpg',
+ 'publishedAt': '2024-10-09T01:00:00Z',
+ 'content': 'Peter Todd is standing on the upper floor of a dilapidated industrial building somewhere in Czechia, chuckling under his breath. He has just been accused on camera of being Satoshi Nakamoto, the Bitc… [+3043 chars]'}
+result = {
+    "Author": [],
+    "Title": [],
+    "Description": [],
+    "Url": [],
+    "PublishedAt": [],
+    "Content": []
+}
+for article in data["articles"]:
+    result['Author'].append(article['author'])
+    result['Title'].append(article['title'])
+    result['Description'].append(article['description'])
+    result['Url'].append(article['url'])
+    result['PublishedAt'].append(article['publishedAt'])
+    result['Content'].append(article['content'])
+df = pd.DataFrame(result)
+df.head()
