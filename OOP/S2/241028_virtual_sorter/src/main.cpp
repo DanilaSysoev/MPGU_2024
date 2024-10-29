@@ -6,7 +6,7 @@ using namespace std;
 
 int main() {
     vector<int> data = { 4, 1, 3, 7, 8, 2, 5 };
-    Sorter* sorter = new Sorter();
+    Sorter* sorter = new BubbleSorter();
     sorter->sort(data);
 
     for(std::vector<int>::size_type i = 0; i < data.size(); ++i) {

@@ -3,7 +3,7 @@
 
 class Sorter {
 public:
-    virtual void sort(std::vector<int>& data) const;
+    virtual void sort(std::vector<int>& data) const = 0;
 
     virtual ~Sorter() = default;
 };
