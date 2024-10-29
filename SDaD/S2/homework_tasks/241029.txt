@@ -1,0 +1,6 @@
+1. Реализовать класс Student с полями id, name, age, group. Добавить консруктор(ы) и геттеры на ваше усмотрение
+2. Реализовать абстрактный класс StudentRepository, содержащий чисто-виртуальные методы add, remove, get, update, getAll
+3. Создать две реализации данного абстрактного класса - MemoryRepository и JsonRepository. Первая хранит записи
+   о студентах в памяти, вторая работает с json-файлом.
+4. Реализовать OutputService, который выводит информацию на экран, используя StudentRepository.
+5. Протестировать методы OutputService с помощью mock для StudentRepository.
