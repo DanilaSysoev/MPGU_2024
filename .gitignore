@@ -6,3 +6,5 @@ bin/
 out/
 hw/
 __pycache__/
+*.dat
+
