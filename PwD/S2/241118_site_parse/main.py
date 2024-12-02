@@ -12,7 +12,8 @@ from bs4 import BeautifulSoup
 # citilink
 # url = 'https://www.citilink.ru/catalog/noutbuki/APPLE/'
 # m video
-url = 'https://voronezh.cian.ru/cat.php?deal_type=sale&electricity=1&engine_version=2&gas=1&house_material%5B0%5D=11&land_status%5B0%5D=2&object_type%5B0%5D=1&offer_type=suburban&region=4567'
+# url = 'https://voronezh.cian.ru/cat.php?deal_type=sale&electricity=1&engine_version=2&gas=1&house_material%5B0%5D=11&land_status%5B0%5D=2&object_type%5B0%5D=1&offer_type=suburban&region=4567'
+url = 'https://lenta.ru/news/2024/11/25/rossiyskie-sledovateli-zaveli-delo-posle-vozgoraniya-samoleta-v-turetskom-aeroportu/'
 
 headers = {
     'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.122 Safari/537.36',
